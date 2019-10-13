@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+
+  sw-portal-backend:
+    build:
+      context: docker
+    container_name: sw-portal-backend
+    image: sw-portal-backend:build
+    ports:
+      - "28080:8080"
+      - "5005:5005"
+    depends_on:
+      - sw-portal-mongodb
+    env_file:
+      - 'sw-portal.env'
+
+  sw-portal-mongodb:
+    image: mongo:latest
+    container_name: "sw-portal-mongodb"
+    volumes:
+      - swapi-mongo-db:/data/db
+      - swapi-mongo-config:/data/configdb
+    ports:
+      - 27017:27017
+    env_file:
+      - 'sw-portal.env'
+
+volumes:
+  swapi-mongo-db:
+  swapi-mongo-config:
