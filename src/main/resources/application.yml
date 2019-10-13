@@ -2,3 +2,6 @@ spring:
   data:
     mongodb:
       uri: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${DATABASE_SERVICE_NAME}/${MONGO_INITDB_DATABASE}?authSource=admin"
+
+frontend:
+  url: "http://localhost:4200"

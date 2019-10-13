@@ -1,0 +1,2 @@
+frontend:
+  url: ${FRONTEND_URL}
