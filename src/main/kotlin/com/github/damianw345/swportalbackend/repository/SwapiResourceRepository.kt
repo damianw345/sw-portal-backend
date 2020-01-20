@@ -4,7 +4,7 @@ import org.bson.Document
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 
-interface ResourceRepository {
+interface SwapiResourceRepository {
     fun getResourceByTypeAndId(resourceType: String, id: Int): String?
     fun getPagedResources(pageable: Pageable, resourceType: String): Page<Document>
 }

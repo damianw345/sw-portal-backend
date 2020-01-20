@@ -1,6 +1,6 @@
 package com.github.damianw345.swportalbackend.crawler
 
-import com.github.damianw345.swportalbackend.model.Resource
+import com.github.damianw345.swportalbackend.model.SwapiResource
 import com.github.damianw345.swportalbackend.rest.client.SwapiClient
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
@@ -52,7 +52,7 @@ class Crawler constructor(val swapiClient: SwapiClient, val mongoTemplate: Mongo
         val resultAsJsonObject = result.asJsonObject
         val resourceIndex = extractResourceIndex(resultAsJsonObject, resourceType)
         val doc = Document.parse(resultAsJsonObject.toString())
-        val resource = Resource(resourceIndex, doc)
+        val resource = SwapiResource(resourceIndex, doc)
         logger.info { "Saving resource: $resource" }
         mongoTemplate.save(resource, resourceType)
     }
