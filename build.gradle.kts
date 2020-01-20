@@ -40,8 +40,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.5")
 
 //    developmentOnly("org.springframework.boot:spring-boot-devtools")
-//    implementation("org.springframework.session:spring-session-core")
-//    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")

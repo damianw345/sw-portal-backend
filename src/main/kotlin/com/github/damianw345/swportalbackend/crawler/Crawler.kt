@@ -31,7 +31,7 @@ class Crawler constructor(val swapiClient: SwapiClient, val mongoTemplate: Mongo
 
         val resourceTypes = setOf("people", "planets", "films", "species", "vehicles", "starships")
 
-        if (mongoTemplate.collectionNames != resourceTypes) {
+        if (!mongoTemplate.collectionNames.containsAll(resourceTypes)) {
             logger.info { "Start crawling" }
             resourceTypes.forEach { resourceType ->
                 crawlAndSave(resourceType)
