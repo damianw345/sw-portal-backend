@@ -7,4 +7,5 @@ enum class SwPortalExceptionCode(val message: String) {
     E003("Incorrect credentials"),
     E004("Username already exists"),
     E005("Bad request"),
+    E006("Forbidden"),
 }
