@@ -8,4 +8,6 @@ enum class SwPortalExceptionCode(val message: String) {
     E004("Username already exists"),
     E005("Bad request"),
     E006("Forbidden"),
+    E007("Token expired"),
+    E008("JWT token is invalid"),
 }

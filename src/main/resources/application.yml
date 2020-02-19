@@ -8,5 +8,9 @@ spring:
     mongodb:
       uri: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${DATABASE_SERVICE_NAME}/${MONGO_INITDB_DATABASE}?authSource=admin"
 
-frontend:
-  url: "http://localhost:4200"
+app-config:
+  token:
+    secret: "secret"
+    expirationTimeMs: 3600000
+  frontend:
+    url: "http://localhost:4200"

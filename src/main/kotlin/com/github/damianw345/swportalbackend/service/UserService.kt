@@ -6,4 +6,6 @@ import com.github.damianw345.swportalbackend.model.User
 interface UserService {
 
     fun registerUser(userDto: UserDto): User
+
+    fun loginUser(userDto: UserDto): String
 }

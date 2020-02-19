@@ -11,22 +11,19 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.web.access.AccessDeniedHandler
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 
 @Configuration
 class WebSecurityConfig(
         private val restAuthenticationEntryPoint: RestAuthenticationEntryPoint,
+        private val restAccessDeniedHandler: RestAccessDeniedHandler,
+        private val jwtAuthenticationFilter: JwtAuthenticationFilter,
         private val userRepository: UserRepository) : WebSecurityConfigurerAdapter() {
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
         return BCryptPasswordEncoder()
-    }
-
-    @Bean
-    fun accessDeniedHandler(): AccessDeniedHandler {
-        return RestAccessDeniedHandler()
     }
 
     override fun configure(authManagerBuilder: AuthenticationManagerBuilder) {
@@ -38,20 +35,20 @@ class WebSecurityConfig(
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
                 .antMatchers("/admin").hasAuthority(ROLE_ADMIN.name)
+                .antMatchers("/users/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .disable()
                 .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler())
-                .and()
-                .httpBasic()
+                .accessDeniedHandler(restAccessDeniedHandler)
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
-                .realmName("SwPortal")
                 .and()
                 .csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
     }
 
     override fun userDetailsServiceBean(): UserDetailsService {

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/swapi")
-@CrossOrigin(origins = ["\${frontend.url}"])
+@CrossOrigin(origins = ["\${app-config.frontend.url}"])
 class SwapiResourceController constructor(val swapiResourceService: SwapiResourceService) {
 
     @GetMapping("/{resourceType}/{id}")

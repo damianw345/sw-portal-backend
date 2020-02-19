@@ -33,7 +33,7 @@ class RestAuthenticationEntryPoint : BasicAuthenticationEntryPoint() {
 
     private fun setResponse(response: HttpServletResponse, exceptionInfo: ExceptionInfo) {
         response.status = HttpStatus.UNAUTHORIZED.value()
-        response.addHeader("WWW-Authenticate", "Basic realm=$realmName")
+        response.addHeader("WWW-Authenticate", "Bearer realm=$realmName")
         response.writer.write(convertObjectToJson(exceptionInfo))
     }
 }
