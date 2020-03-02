@@ -12,5 +12,3 @@ app-config:
   token:
     secret: "secret"
     expirationTimeMs: 3600000
-  frontend:
-    url: "http://localhost:4200"
