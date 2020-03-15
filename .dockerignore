@@ -1,0 +1,11 @@
+.gitignore
+.git/
+
+docker-compose.yml
+sw-portal.env
+
+.gradle
+gradlew.bat
+
+.idea
+sw-portal-backend.iml

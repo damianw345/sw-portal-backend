@@ -3,8 +3,6 @@ version: '3.7'
 services:
 
   sw-portal-backend:
-    build:
-      context: docker
     container_name: sw-portal-backend
     image: sw-portal-backend:build
     ports:
