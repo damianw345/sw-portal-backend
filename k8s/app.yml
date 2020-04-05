@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sw-portal-backend
+  labels:
+    app: sw-portal-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sw-portal-backend
+  template:
+    metadata:
+      labels:
+        app: sw-portal-backend
+    spec:
+      containers:
+        - name: sw-portal-backend
+          image: gcr.io/auspicious-lead-272321/sw-portal-backend:latest
+          envFrom:
+            - configMapRef:
+                name: sw-portal-backend-config
+          ports:
+            - containerPort: 8080
+            - containerPort: 5005
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sw-portal-backend
+  labels:
+    run: sw-portal-backend
+spec:
+#  type: NodePort
+  type: LoadBalancer
+  ports:
+    - name: "app"
+      port: 8080
+      targetPort: 8080
+    - name: "debug"
+      port: 5005
+      targetPort: 5005
+  selector:
+    app: sw-portal-backend
+
