@@ -5,6 +5,7 @@ services:
   sw-portal-backend:
     container_name: sw-portal-backend
     image: sw-portal-backend:build
+    build: .
     ports:
       - "28080:8080"
       - "5005:5005"
