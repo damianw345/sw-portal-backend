@@ -26,8 +26,6 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "Greenwich.SR3"
-
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -35,7 +33,6 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 
     implementation("io.github.microutils:kotlin-logging:1.7.6")
     implementation("com.google.code.gson:gson:2.8.5")
@@ -53,12 +50,6 @@ dependencies {
 
     implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation("javax.xml.bind:jaxb-api:2.3.1")
-}
-
-dependencyManagement {
-    imports {
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
-    }
 }
 
 

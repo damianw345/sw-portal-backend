@@ -15,8 +15,9 @@ services:
       - 'sw-portal.env'
 
   sw-portal-mongodb:
-    image: mongo:latest
+    image: sw-portal-mongodb
     container_name: "sw-portal-mongodb"
+    build: docker-sw-portal-mongo-db/
     volumes:
       - swapi-mongo-db:/data/db
       - swapi-mongo-config:/data/configdb

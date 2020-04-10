@@ -11,3 +11,5 @@ gradlew.bat
 sw-portal-backend.iml
 
 k8s
+docker-sw-portal-mongo-db
+build
