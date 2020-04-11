@@ -1,4 +1,9 @@
 FROM openjdk:11.0.4-jdk-slim AS BUILD_IMAGE
+COPY gradle ./gradle
+COPY build.gradle.kts settings.gradle.kts gradlew ./
+# download and cache dependencies in Docker layer for subsequent builds
+RUN ./gradlew --info resolveDependencies
+
 COPY . .
 RUN ./gradlew --info build
 

@@ -59,3 +59,18 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
+
+tasks {
+    register("resolveDependencies") {
+        doLast {
+            project.rootProject.allprojects.forEach {
+                it.buildscript.configurations
+                        .filter { config -> config.isCanBeResolved }
+                        .forEach { config -> config.resolve() }
+                it.configurations
+                        .filter { config -> config.isCanBeResolved }
+                        .forEach { config -> config.resolve() }
+            }
+        }
+    }
+}
