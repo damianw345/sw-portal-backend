@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: sw-portal-backend
-          image: gcr.io/auspicious-lead-272321/sw-portal-backend:latest
+          image: gcr.io/sw-portal-project/sw-portal-backend:latest
           envFrom:
             - configMapRef:
                 name: sw-portal-backend-config
