@@ -1,13 +1,21 @@
 package com.github.damianw345.swportalbackend.exception
 
-enum class SwPortalExceptionCode(val message: String) {
-    E000("Generic exception"),
-    E001("Unauthorized"),
-    E002("Username not found"),
-    E003("Incorrect credentials"),
-    E004("Username already exists"),
-    E005("Bad request"),
-    E006("Forbidden"),
-    E007("Token expired"),
-    E008("JWT token is invalid"),
+import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.BAD_REQUEST
+import org.springframework.http.HttpStatus.CONFLICT
+import org.springframework.http.HttpStatus.FORBIDDEN
+import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import org.springframework.http.HttpStatus.NOT_FOUND
+import org.springframework.http.HttpStatus.UNAUTHORIZED
+
+enum class SwPortalExceptionCode(val message: String, val httpStatus: HttpStatus) {
+    E000("Generic exception", INTERNAL_SERVER_ERROR),
+    E001("Unauthorized", UNAUTHORIZED),
+    E002("Username not found", NOT_FOUND),
+    E003("Incorrect credentials", UNAUTHORIZED),
+    E004("Username already exists", CONFLICT),
+    E005("Bad request", BAD_REQUEST),
+    E006("Forbidden", FORBIDDEN),
+    E007("Token expired", FORBIDDEN),
+    E008("JWT token is invalid", FORBIDDEN),
 }
