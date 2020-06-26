@@ -1,4 +1,0 @@
-app-config:
-  token:
-    secret: ${TOKEN_SECRET}
-    expirationTimeMs: ${TOKEN_EXPIRATION_TIME_MS}

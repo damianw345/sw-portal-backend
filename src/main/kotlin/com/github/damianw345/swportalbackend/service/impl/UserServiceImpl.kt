@@ -7,15 +7,16 @@ import com.github.damianw345.swportalbackend.exception.SwPortalExceptionCode.E00
 import com.github.damianw345.swportalbackend.model.Role.ROLE_USER
 import com.github.damianw345.swportalbackend.model.User
 import com.github.damianw345.swportalbackend.repository.UserRepository
+import com.github.damianw345.swportalbackend.security.AuthProvider
 import com.github.damianw345.swportalbackend.service.UserService
 import com.github.damianw345.swportalbackend.util.JwtUtil
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
-class UserServiceImpl(val userRepository: UserRepository,
-                      val jwtUtil: JwtUtil,
-                      val passwordEncoder: PasswordEncoder) : UserService {
+class UserServiceImpl(private val userRepository: UserRepository,
+                      private val jwtUtil: JwtUtil,
+                      private val passwordEncoder: PasswordEncoder) : UserService {
 
     override fun registerUser(userDto: UserDto): User {
 
@@ -26,7 +27,10 @@ class UserServiceImpl(val userRepository: UserRepository,
                 User(
                         username = userDto.username,
                         password = passwordEncoder.encode(userDto.password),
-                        roles = listOf(ROLE_USER.name))
+                        roles = listOf(ROLE_USER.name),
+                        authProvider = AuthProvider.local,
+                        attributes = emptyMap()
+                )
         )
     }
 

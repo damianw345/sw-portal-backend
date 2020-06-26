@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus.FORBIDDEN
 import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.HttpStatus.UNAUTHORIZED
+import org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
 
 enum class SwPortalExceptionCode(val message: String, val httpStatus: HttpStatus) {
     E000("Generic exception", INTERNAL_SERVER_ERROR),
@@ -18,4 +19,6 @@ enum class SwPortalExceptionCode(val message: String, val httpStatus: HttpStatus
     E006("Forbidden", FORBIDDEN),
     E007("Token expired", FORBIDDEN),
     E008("JWT token is invalid", FORBIDDEN),
+    E009("Invalid auth provider", UNPROCESSABLE_ENTITY),
+    E010("Invalid redirect URI", BAD_REQUEST),
 }

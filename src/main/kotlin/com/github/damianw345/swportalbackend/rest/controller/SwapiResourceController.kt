@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/swapi")
-class SwapiResourceController constructor(val swapiResourceService: SwapiResourceService) {
+class SwapiResourceController constructor(private val swapiResourceService: SwapiResourceService) {
 
     @GetMapping("/{resourceType}/{id}")
     fun getResource(@PathVariable("resourceType") resourceType: String,

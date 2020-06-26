@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
-class SwapiResourceServiceImpl(val swapiResourceRepository: SwapiResourceRepository) : SwapiResourceService {
+class SwapiResourceServiceImpl(private val swapiResourceRepository: SwapiResourceRepository) : SwapiResourceService {
 
     override fun getSwapiResourceByTypeAndId(type: String, id: Int): String? {
         return swapiResourceRepository.getResourceByTypeAndId(type, id)

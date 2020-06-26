@@ -7,8 +7,46 @@ spring:
         one-indexed-parameters: true
     mongodb:
       uri: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${DATABASE_SERVICE_NAME}/${MONGO_INITDB_DATABASE}?authSource=admin"
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${GOOGLE_CLIENT_ID}
+            clientSecret: ${GOOGLE_CLIENT_SECRET}
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+          facebook:
+            clientId: ${FACEBOOK_CLIENT_ID}
+            clientSecret: ${FACEBOOK_CLIENT_SECRET}
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - public_profile
+          github:
+            clientId: ${GITHUB_CLIENT_ID}
+            clientSecret: ${GITHUB_CLIENT_SECRET}
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - user:email
+              - read:user
+        provider:
+          facebook:
+            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
 
 app-config:
   token:
-    secret: "secret"
-    expirationTimeMs: 3600000
+    secret: ${TOKEN_SECRET}
+    expirationTimeMs: ${TOKEN_EXPIRATION_TIME_MS}
+  authorizedRedirectUris:
+    - ${FRONTEND_AUTHORIZED_REDIRECT_URI}

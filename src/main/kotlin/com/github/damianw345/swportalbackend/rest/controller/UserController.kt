@@ -12,7 +12,7 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/users")
-class UserController(val userService: UserService) {
+class UserController(private val userService: UserService) {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
