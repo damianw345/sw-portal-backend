@@ -4,8 +4,8 @@ import com.github.damianw345.swportalbackend.dto.UserDto
 import com.github.damianw345.swportalbackend.exception.SwPortalException
 import com.github.damianw345.swportalbackend.exception.SwPortalExceptionCode
 import com.github.damianw345.swportalbackend.exception.SwPortalExceptionCode.E004
-import com.github.damianw345.swportalbackend.model.Role.ROLE_USER
-import com.github.damianw345.swportalbackend.model.User
+import com.github.damianw345.swportalbackend.model.security.Role.ROLE_USER
+import com.github.damianw345.swportalbackend.model.security.User
 import com.github.damianw345.swportalbackend.repository.UserRepository
 import com.github.damianw345.swportalbackend.security.AuthProvider
 import com.github.damianw345.swportalbackend.service.UserService

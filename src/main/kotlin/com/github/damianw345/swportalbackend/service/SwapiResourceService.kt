@@ -1,10 +1,11 @@
 package com.github.damianw345.swportalbackend.service
 
-import org.bson.Document
+import com.github.damianw345.swportalbackend.model.swapi.BaseSwapiResource
+import com.github.damianw345.swportalbackend.model.swapi.ResourceType
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 
 interface SwapiResourceService {
-    fun getSwapiResourceByTypeAndId(type: String, id: Int): String?
-    fun getSwapiPagedResources(pageable: Pageable, resourceType: String): Page<Document>
+    fun <T : BaseSwapiResource> getSwapiResourceByTypeAndId(id: Int, resourceType: ResourceType): T?
+    fun <T : BaseSwapiResource> getSwapiPagedResources(pageable: Pageable, resourceType: ResourceType): Page<T>
 }

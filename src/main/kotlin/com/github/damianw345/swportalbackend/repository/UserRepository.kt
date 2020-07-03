@@ -1,6 +1,6 @@
 package com.github.damianw345.swportalbackend.repository
 
-import com.github.damianw345.swportalbackend.model.User
+import com.github.damianw345.swportalbackend.model.security.User
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 

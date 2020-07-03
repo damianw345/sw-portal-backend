@@ -1,4 +1,4 @@
-package com.github.damianw345.swportalbackend.model
+package com.github.damianw345.swportalbackend.model.security
 
 import com.github.damianw345.swportalbackend.security.AuthProvider
 import org.springframework.data.annotation.Id

@@ -1,4 +1,4 @@
-package com.github.damianw345.swportalbackend.model
+package com.github.damianw345.swportalbackend.model.security
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails

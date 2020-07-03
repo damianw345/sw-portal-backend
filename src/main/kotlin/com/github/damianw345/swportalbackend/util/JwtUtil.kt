@@ -4,7 +4,7 @@ import com.github.damianw345.swportalbackend.config.AppConfig
 import com.github.damianw345.swportalbackend.exception.SwPortalException
 import com.github.damianw345.swportalbackend.exception.SwPortalExceptionCode.E007
 import com.github.damianw345.swportalbackend.exception.SwPortalExceptionCode.E008
-import com.github.damianw345.swportalbackend.model.SecurityPrincipal
+import com.github.damianw345.swportalbackend.model.security.SecurityPrincipal
 import com.github.damianw345.swportalbackend.security.AUTHORITIES_KEY
 import com.github.damianw345.swportalbackend.security.TOKEN_PREFIX
 import io.jsonwebtoken.Claims

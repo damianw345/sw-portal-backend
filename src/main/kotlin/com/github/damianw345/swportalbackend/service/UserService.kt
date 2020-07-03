@@ -1,7 +1,7 @@
 package com.github.damianw345.swportalbackend.service
 
 import com.github.damianw345.swportalbackend.dto.UserDto
-import com.github.damianw345.swportalbackend.model.User
+import com.github.damianw345.swportalbackend.model.security.User
 
 interface UserService {
 

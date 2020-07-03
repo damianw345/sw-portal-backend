@@ -1,6 +1,6 @@
 package com.github.damianw345.swportalbackend.security
 
-import com.github.damianw345.swportalbackend.model.Role.ROLE_ADMIN
+import com.github.damianw345.swportalbackend.model.security.Role.ROLE_ADMIN
 import com.github.damianw345.swportalbackend.repository.UserRepository
 import com.github.damianw345.swportalbackend.security.oauth.HttpCookieOAuth2AuthorizationRequestRepository
 import com.github.damianw345.swportalbackend.security.oauth.OAuth2AuthenticationFailureHandler

@@ -3,9 +3,9 @@ package com.github.damianw345.swportalbackend.security.oauth
 import com.github.damianw345.swportalbackend.exception.SwPortalException
 import com.github.damianw345.swportalbackend.exception.SwPortalExceptionCode
 import com.github.damianw345.swportalbackend.exception.SwPortalExceptionCode.E002
-import com.github.damianw345.swportalbackend.model.Role
-import com.github.damianw345.swportalbackend.model.SecurityPrincipal
-import com.github.damianw345.swportalbackend.model.User
+import com.github.damianw345.swportalbackend.model.security.Role
+import com.github.damianw345.swportalbackend.model.security.SecurityPrincipal
+import com.github.damianw345.swportalbackend.model.security.User
 import com.github.damianw345.swportalbackend.repository.UserRepository
 import com.github.damianw345.swportalbackend.security.AuthProvider
 import com.github.damianw345.swportalbackend.security.oauth.provider.OAuth2UserInfo
