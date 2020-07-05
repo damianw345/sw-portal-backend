@@ -43,9 +43,9 @@ class OAuth2AuthenticationSuccessHandler(
         httpCookieOAuth2AuthorizationRequestRepository.removeAuthorizationRequestCookies(request, response)
     }
 
-    protected fun determineTargetUrl(request: HttpServletRequest,
-                                     response: HttpServletResponse,
-                                     authentication: Authentication): String {
+    override fun determineTargetUrl(request: HttpServletRequest,
+                                    response: HttpServletResponse,
+                                    authentication: Authentication): String {
         val targetUrl = getCookie(request, REDIRECT_URI_PARAM_COOKIE_NAME)
                 ?.let { cookie: Cookie -> cookie.value }
                 ?.also { validateAuthorizedRedirectUri(it) }
