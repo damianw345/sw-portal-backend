@@ -44,13 +44,19 @@ class SwPortalExceptionHandler : ResponseEntityExceptionHandler() {
                 .union(ex.bindingResult.globalErrors.map { it.objectName + ": " + it.defaultMessage })
                 .toList()
 
-        return ResponseEntity(ExceptionInfo.ofBadRequest(errors), BAD_REQUEST)
+        return ResponseEntity(buildExceptionInfoAndLog(errors), BAD_REQUEST)
     }
 
     override fun handleHttpMessageNotReadable(ex: HttpMessageNotReadableException,
                                               headers: HttpHeaders,
                                               status: HttpStatus,
                                               request: WebRequest): ResponseEntity<Any> {
-        return ResponseEntity(ExceptionInfo.ofBadRequest(listOf(ex.message)), BAD_REQUEST)
+        return ResponseEntity(buildExceptionInfoAndLog(listOf(ex.message)), BAD_REQUEST)
+    }
+
+    private fun buildExceptionInfoAndLog(errors: List<String?>): ExceptionInfo {
+        val exceptionInfo = ExceptionInfo.ofBadRequest(errors)
+        logger.error("Received incorrect request $exceptionInfo")
+        return exceptionInfo
     }
 }

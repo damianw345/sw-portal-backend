@@ -7,7 +7,7 @@ It's spare time project with main aim at learning Kotlin, MongoDB, various Sprin
 - Docker with docker-compose
 - Optional: Configured OAuth login from providers: Github, Google, Facebook and filled `sw-portal.env` file. 
 You can run app without this, but only password authentication will work. 
-Default credentials stored at `mongodump.gz` are `admin / P@ssw0rd`
+Default credentials stored at `mongodump.gz` are `admin@admin.com / P@ssw0rd`
 - Optional (needed for cloud deployment): installed and configured `kubectl`, `gcloud`
 
 # Running locally with Docker

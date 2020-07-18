@@ -27,6 +27,6 @@ class SwapiResourceController<T : BaseSwapiResource> constructor(private val swa
             @PathVariable("resourceType") resourceType: String,
             @PageableDefault(size = 10, page = 0) pageable: Pageable
     ): Page<T> {
-        return swapiResourceService.getSwapiPagedResources(pageable, ResourceType.valueOf(resourceType))
+        return swapiResourceService.getSwapiPagedResources(pageable, ResourceType.valueOf(resourceType.toLowerCase()))
     }
 }
