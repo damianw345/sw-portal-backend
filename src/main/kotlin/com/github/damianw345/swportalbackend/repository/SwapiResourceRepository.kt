@@ -7,6 +7,6 @@ import org.springframework.data.domain.Pageable
 
 interface SwapiResourceRepository {
 
+    fun <T : BaseSwapiResource> getResourceByTypeAndIds(ids: List<Int>, resourceType: ResourceType): List<T>
     fun <T : BaseSwapiResource> getPagedResources(pageable: Pageable, resourceType: ResourceType): Page<T>
-    fun <T : BaseSwapiResource> getResourceByTypeAndId(id: Int, resourceType: ResourceType): T?
 }

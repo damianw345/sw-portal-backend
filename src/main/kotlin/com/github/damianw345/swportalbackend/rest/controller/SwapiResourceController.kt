@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/swapi")
 class SwapiResourceController<T : BaseSwapiResource> constructor(private val swapiResourceService: SwapiResourceService) {
 
-    @GetMapping("/{resourceType}/{id}")
+    @GetMapping("/{resourceType}/{ids}")
     fun getResource(@PathVariable("resourceType") resourceType: String,
-                    @PathVariable("id") id: Int): T? {
-        return swapiResourceService.getSwapiResourceByTypeAndId(id, ResourceType.valueOf(resourceType))
+                    @PathVariable("ids") ids: List<Int>): List<T> {
+        return swapiResourceService.getSwapiResourceByTypeAndIds(ids, ResourceType.valueOf(resourceType))
     }
 
     @GetMapping("/{resourceType}")

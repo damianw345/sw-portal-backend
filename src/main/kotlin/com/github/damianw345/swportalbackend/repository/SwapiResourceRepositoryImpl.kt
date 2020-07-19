@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
 import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.core.MongoTemplate
+import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Repository
 
@@ -14,8 +15,12 @@ import org.springframework.stereotype.Repository
 class SwapiResourceRepositoryImpl constructor(val mongoTemplate: MongoTemplate, val mongoOperations: MongoOperations)
     : SwapiResourceRepository {
 
-    override fun <T : BaseSwapiResource> getResourceByTypeAndId(id: Int, resourceType: ResourceType): T? {
-        return mongoTemplate.findById(id, resourceType.clazz as Class<T>, resourceType.name)
+    override fun <T : BaseSwapiResource> getResourceByTypeAndIds(ids: List<Int>, resourceType: ResourceType): List<T> {
+        return mongoTemplate.find(
+                Query.query(Criteria.where("_id").`in`(ids)),
+                resourceType.clazz as Class<T>,
+                resourceType.name
+        )
     }
 
     override fun <T : BaseSwapiResource> getPagedResources(pageable: Pageable, resourceType: ResourceType): Page<T> {
