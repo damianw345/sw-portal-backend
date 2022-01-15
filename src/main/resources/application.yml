@@ -1,6 +1,9 @@
 server.servlet.context-path: /api
 
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher # needed by Swagger 3
   data:
     web:
       pageable:

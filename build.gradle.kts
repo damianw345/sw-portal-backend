@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.3.1.RELEASE"
-    id("io.spring.dependency-management") version "1.0.8.RELEASE"
-    id("com.vanniktech.dependency.graph.generator") version "0.5.0"
+    id("org.springframework.boot") version "2.6.2"
+    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("com.vanniktech.dependency.graph.generator") version "0.7.0"
     id("com.github.ben-manes.versions") version "0.41.0"
-    kotlin("jvm") version "1.3.61"
-    kotlin("plugin.spring") version "1.3.61"
+    kotlin("jvm") version "1.6.10"
+    kotlin("plugin.spring") version "1.6.10"
 }
 
 group = "com.github.damianw345"
@@ -26,12 +26,12 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("io.springfox:springfox-swagger2:2.7.0")
-    implementation("io.springfox:springfox-swagger-ui:2.7.0")
+    implementation("io.springfox:springfox-swagger2:3.0.0")
+    implementation("io.springfox:springfox-swagger-ui:3.0.0")
     implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation("javax.xml.bind:jaxb-api:2.3.1")
-    implementation("org.hibernate.validator:hibernate-validator:6.1.5.Final")
-    implementation("io.github.microutils:kotlin-logging:1.7.6")
+    implementation("org.hibernate.validator:hibernate-validator:7.0.1.Final")
+    implementation("io.github.microutils:kotlin-logging:2.1.21")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
