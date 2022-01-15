@@ -1,9 +1,8 @@
 server.servlet.context-path: /api
-
+springdoc:
+  packages-to-scan: com.github.damianw345.swportalbackend.rest
+  paths-to-match: /**
 spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher # needed by Swagger 3
   data:
     web:
       pageable:

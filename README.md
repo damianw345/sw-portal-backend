@@ -5,13 +5,20 @@ It's spare time project with main aim at learning Kotlin, MongoDB, various Sprin
 
 # Prerequisites
 - Docker with docker-compose
-- Optional: Configured OAuth login from providers: Github, Google, Facebook and filled `sw-portal.env` file. 
-You can run app without this, but only password authentication will work. 
-Default credentials stored at `mongodump.gz` are `admin@admin.com / P@ssw0rd`
+- Optional: Configured OAuth login from providers: Github, Google, Facebook and filled `sw-portal.env` file. You can run
+  app without this, but only password authentication will work. Default credentials stored at `mongodump.gz`
+  are `admin@admin.com / P@ssw0rd`
 - Optional (needed for cloud deployment): installed and configured `kubectl`, `gcloud`
 
 # Running locally with Docker
+
 To run the project, execute command: `docker-compose build && docker-compose up -d`
 
 # Running at cloud
-App is prepared to be run with Kubernetes and was tested with Google Cloud Platform. You can find needed configuration at `k8s` dir
+
+App is prepared to be run with Kubernetes and was tested with Google Cloud Platform. You can find needed configuration
+at `k8s` dir
+
+# REST endpoints documentation:
+
+`http://localhost:8080/api/swagger-ui/index.html`
