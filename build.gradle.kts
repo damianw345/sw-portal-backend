@@ -4,6 +4,7 @@ plugins {
     id("org.springframework.boot") version "2.3.1.RELEASE"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
     id("com.vanniktech.dependency.graph.generator") version "0.5.0"
+    id("com.github.ben-manes.versions") version "0.41.0"
     kotlin("jvm") version "1.3.61"
     kotlin("plugin.spring") version "1.3.61"
 }
