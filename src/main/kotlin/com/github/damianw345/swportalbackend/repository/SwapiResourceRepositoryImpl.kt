@@ -12,21 +12,28 @@ import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-class SwapiResourceRepositoryImpl constructor(val mongoTemplate: MongoTemplate, val mongoOperations: MongoOperations)
-    : SwapiResourceRepository {
+class SwapiResourceRepositoryImpl constructor(val mongoTemplate: MongoTemplate, val mongoOperations: MongoOperations) :
+    SwapiResourceRepository {
+
+    override fun <T : BaseSwapiResource> findAll(resourceType: ResourceType): List<T> {
+        return mongoTemplate.findAll(
+            resourceType.clazz as Class<T>,
+            resourceType.name
+        )
+    }
 
     override fun <T : BaseSwapiResource> getResourceByTypeAndIds(ids: List<Int>, resourceType: ResourceType): List<T> {
         return mongoTemplate.find(
-                Query.query(Criteria.where("_id").`in`(ids)),
-                resourceType.clazz as Class<T>,
-                resourceType.name
+            Query.query(Criteria.where("_id").`in`(ids)),
+            resourceType.clazz as Class<T>,
+            resourceType.name
         )
     }
 
     override fun <T : BaseSwapiResource> getPagedResources(pageable: Pageable, resourceType: ResourceType): Page<T> {
         val query = Query().with(pageable)
         val list = mongoOperations
-                .find(query, resourceType.clazz as Class<T>, resourceType.name)
+            .find(query, resourceType.clazz as Class<T>, resourceType.name)
         val count = mongoOperations.count(Query(), resourceType.clazz, resourceType.name)
         return PageImpl<T>(list, pageable, count)
     }

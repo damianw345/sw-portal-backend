@@ -81,7 +81,11 @@ class WebSecurityConfig(
             "/configuration/security",
             "/swagger-ui/**",
             "/swagger-ui.html",
-            "/webjars/**"
+            "/webjars/**",
+
+            "/graphql",
+            "/graphiql",
+            "/vendor/**"
         )
     }
 

@@ -32,6 +32,11 @@ dependencies {
     implementation("org.hibernate.validator:hibernate-validator:7.0.1.Final")
     implementation("io.github.microutils:kotlin-logging:2.1.21")
 
+    // GraphQL
+    implementation("com.graphql-java:graphql-java-spring-boot-starter-webmvc:2.0")
+    implementation("com.graphql-java:graphql-java:17.3")
+    implementation("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
 

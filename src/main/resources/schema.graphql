@@ -1,0 +1,132 @@
+type Query {
+    characters: [CharacterModel]
+}
+
+type CharacterModel {
+    id: ID
+    created: String
+    edited: String
+    name: String
+    films: [Int]
+    species: [Int]
+    vehicles: [Int]
+    starships: [Int]
+    characters: [Int]
+    planets: [Int]
+    height: String
+    mass: String
+    hairColor: String
+    skinColor: String
+    eyeColor: String
+    birthYear: String
+    gender: String
+    homeWorld: String
+}
+
+type Film {
+    id: ID
+    created: String
+    edited: String
+    name: String
+    films: [Int]
+    species: [Int]
+    vehicles: [Int]
+    starships: [Int]
+    characters: [Int]
+    planets: [Int]
+    episodeId: String
+    openingCrawl: String
+    director: String
+    producer: String
+    releaseDate: String
+}
+
+type Planet {
+    id: ID
+    created: String
+    edited: String
+    name: String
+    films: [Int]
+    species: [Int]
+    vehicles: [Int]
+    starships: [Int]
+    characters: [Int]
+    planets: [Int]
+    rotationPeriod: String
+    orbitalPeriod: String
+    diameter: String
+    climate: String
+    gravity: String
+    terrain: String
+    surfaceWater: String
+    population: String
+}
+
+type Species {
+    id: ID
+    created: String
+    edited: String
+    name: String
+    films: [Int]
+    species: [Int]
+    vehicles: [Int]
+    starships: [Int]
+    characters: [Int]
+    planets: [Int]
+    classification: String
+    designation: String
+    averageHeight: String
+    skinColors: String
+    hairColors: String
+    eyeColors: String
+    averageLifespan: String
+    homeWorld: String
+    language: String
+}
+
+type Starship {
+    id: ID
+    created: String
+    edited: String
+    name: String
+    films: [Int]
+    species: [Int]
+    vehicles: [Int]
+    starships: [Int]
+    characters: [Int]
+    planets: [Int]
+    model: String
+    manufacturer: String
+    costInCredits: String
+    length: String
+    maxAtmospheringSpeed: String
+    crew: String
+    passengers: String
+    cargoCapacity: String
+    consumables: String
+    hyperdriveRating: String
+    starshipClass: String
+}
+
+type Vehicle {
+    id: ID
+    created: String
+    edited: String
+    name: String
+    films: [Int]
+    species: [Int]
+    vehicles: [Int]
+    starships: [Int]
+    characters: [Int]
+    planets: [Int]
+    model: String
+    manufacturer: String
+    costInCredits: String
+    length: String
+    maxAtmospheringSpeed: String
+    crew: String
+    passengers: String
+    cargoCapacity: String
+    consumables: String
+    vehicleClass: String
+}
