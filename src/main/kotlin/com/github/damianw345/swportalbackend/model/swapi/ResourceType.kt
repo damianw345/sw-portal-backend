@@ -7,7 +7,7 @@ package com.github.damianw345.swportalbackend.model.swapi
  * during interactions with Mongo
  */
 enum class ResourceType(val clazz: Class<*>) {
-    people(CharacterModel::class.java),
+    people(CharacterEntity::class.java),
     films(Film::class.java),
     planets(Planet::class.java),
     species(Species::class.java),

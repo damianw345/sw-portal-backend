@@ -1,11 +1,11 @@
 package com.github.damianw345.swportalbackend.service
 
-import com.github.damianw345.swportalbackend.dto.UserDto
+import com.github.damianw345.swportalbackend.dto.UserDTO
 import com.github.damianw345.swportalbackend.model.security.User
 
 interface UserService {
 
-    fun registerUser(userDto: UserDto): User
+    fun registerUser(userDto: UserDTO): User
 
-    fun loginUser(userDto: UserDto): String
+    fun loginUser(userDto: UserDTO): String
 }

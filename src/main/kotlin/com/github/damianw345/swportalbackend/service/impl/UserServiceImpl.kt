@@ -1,6 +1,6 @@
 package com.github.damianw345.swportalbackend.service.impl
 
-import com.github.damianw345.swportalbackend.dto.UserDto
+import com.github.damianw345.swportalbackend.dto.UserDTO
 import com.github.damianw345.swportalbackend.exception.SwPortalException
 import com.github.damianw345.swportalbackend.exception.SwPortalExceptionCode
 import com.github.damianw345.swportalbackend.exception.SwPortalExceptionCode.E004
@@ -18,26 +18,26 @@ class UserServiceImpl(private val userRepository: UserRepository,
                       private val jwtUtil: JwtUtil,
                       private val passwordEncoder: PasswordEncoder) : UserService {
 
-    override fun registerUser(userDto: UserDto): User {
+    override fun registerUser(userDto: UserDTO): User {
 
         if (userRepository.findByUsername(userDto.username) != null)
             throw SwPortalException(E004)
 
         return userRepository.save(
-                User(
-                        username = userDto.username,
-                        password = passwordEncoder.encode(userDto.password),
-                        roles = listOf(ROLE_USER.name),
-                        authProvider = AuthProvider.local,
+            User(
+                username = userDto.username,
+                password = passwordEncoder.encode(userDto.password),
+                roles = listOf(ROLE_USER.name),
+                authProvider = AuthProvider.local,
                         attributes = emptyMap()
                 )
         )
     }
 
-    override fun loginUser(userDto: UserDto): String {
+    override fun loginUser(userDto: UserDTO): String {
         return userRepository.findByUsername(userDto.username)
-                ?.takeIf { passwordEncoder.matches(userDto.password, it.password) }
-                ?.let { jwtUtil.buildToken(it.username, it.roles) }
-                ?: throw SwPortalException(SwPortalExceptionCode.E003)
+            ?.takeIf { passwordEncoder.matches(userDto.password, it.password) }
+            ?.let { jwtUtil.buildToken(it.username, it.roles) }
+            ?: throw SwPortalException(SwPortalExceptionCode.E003)
     }
 }

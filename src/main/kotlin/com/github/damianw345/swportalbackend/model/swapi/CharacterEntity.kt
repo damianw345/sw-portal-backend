@@ -3,7 +3,7 @@ package com.github.damianw345.swportalbackend.model.swapi
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Field
 
-data class CharacterModel(
+data class CharacterEntity(
         @Id override val id: Int?,
         override val created: String,
         override val edited: String,

@@ -1,11 +1,10 @@
-package com.github.damianw345.swportalbackend.graphql
+package com.github.damianw345.swportalbackend.graphql.config
 
 import graphql.GraphQL
 import graphql.schema.GraphQLSchema
 import graphql.schema.idl.RuntimeWiring
 import graphql.schema.idl.SchemaGenerator
 import graphql.schema.idl.SchemaParser
-import graphql.schema.idl.TypeDefinitionRegistry
 import graphql.schema.idl.TypeRuntimeWiring.newTypeWiring
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -15,14 +14,16 @@ const val GRAPHQL_SCHEMA_FILE_NAME = "/schema.graphql"
 
 @Configuration
 class GraphQLConfiguration(
-    private val characterDataFetcher: CharacterDataFetcher,
+    private val dataFetchers: List<TypedDataFetcher<*>>
 ) {
 
     @Bean
     fun graphQL(): GraphQL {
-        val typeRegistry: TypeDefinitionRegistry = SchemaParser().parse(getSchema())
         val runtimeWiring: RuntimeWiring = buildWiring()
-        val graphQLSchema: GraphQLSchema = SchemaGenerator().makeExecutableSchema(typeRegistry, runtimeWiring)
+        val graphQLSchema: GraphQLSchema = SchemaGenerator().makeExecutableSchema(
+            SchemaParser().parse(getSchema()),
+            runtimeWiring
+        )
         return GraphQL.newGraphQL(graphQLSchema).build()
     }
 
@@ -31,8 +32,10 @@ class GraphQLConfiguration(
             ?: throw FileNotFoundException("File $GRAPHQL_SCHEMA_FILE_NAME not found")
 
     private fun buildWiring(): RuntimeWiring {
-        return RuntimeWiring.newRuntimeWiring()
-            .type(newTypeWiring("Query").dataFetcher("characters", characterDataFetcher))
-            .build()
+        val wiring = RuntimeWiring.newRuntimeWiring()
+        for (dataFetcher in dataFetchers) {
+            wiring.type(newTypeWiring(dataFetcher.typeName).dataFetcher(dataFetcher.fieldName, dataFetcher))
+        }
+        return wiring.build()
     }
 }

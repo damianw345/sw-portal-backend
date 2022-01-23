@@ -1,5 +1,10 @@
 type Query {
-    characters: [CharacterModel]
+    characters: [CharacterModel],
+    films: [Film],
+    planets: [Planet],
+    species: [Species],
+    starships: [Starship],
+    vehicles: [Vehicle],
 }
 
 type CharacterModel {
