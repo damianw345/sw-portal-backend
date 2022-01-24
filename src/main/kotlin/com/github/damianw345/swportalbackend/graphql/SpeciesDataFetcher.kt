@@ -11,12 +11,11 @@ import org.springframework.stereotype.Component
 class SpeciesDataFetcher(
     val swapiResourceRepository: SwapiResourceRepository
 ) : TypedDataFetcher<List<Vehicle>> {
+
+    override val typeName = "Query"
+    override val fieldName = ResourceType.species.name
+
     override fun get(environment: DataFetchingEnvironment): List<Vehicle> {
         return swapiResourceRepository.findAll(ResourceType.species)
     }
-
-    override val typeName: String
-        get() = "Query"
-    override val fieldName: String
-        get() = ResourceType.species.name
 }

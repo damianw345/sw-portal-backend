@@ -1,6 +1,7 @@
 type Query {
     characters: [CharacterModel],
     films: [Film],
+    filmsByCharacter(characterId: Int): [Film]
     planets: [Planet],
     species: [Species],
     starships: [Starship],

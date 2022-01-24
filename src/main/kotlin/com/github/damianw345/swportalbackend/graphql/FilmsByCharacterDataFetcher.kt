@@ -8,14 +8,17 @@ import graphql.schema.DataFetchingEnvironment
 import org.springframework.stereotype.Component
 
 @Component
-class FilmDataFetcher(
-    val swapiResourceRepository: SwapiResourceRepository
-) : TypedDataFetcher<List<Film>> {
+class FilmsByCharacterDataFetcher(val swapiResourceRepository: SwapiResourceRepository) :
+    TypedDataFetcher<List<Film>> {
 
     override val typeName = "Query"
-    override val fieldName = ResourceType.films.name
+    override val fieldName = "filmsByCharacter"
 
     override fun get(environment: DataFetchingEnvironment): List<Film> {
-        return swapiResourceRepository.findAll(ResourceType.films)
+
+        val characterId = environment.getArgument<Int>("characterId")
+
+        return swapiResourceRepository.findAll<Film>(ResourceType.films)
+            .filter { it.characters.contains(characterId) }
     }
 }
