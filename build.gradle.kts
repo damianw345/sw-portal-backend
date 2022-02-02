@@ -13,6 +13,8 @@ group = "com.github.damianw345"
 version = "1.0.0-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
+val graphQLVersion = "12.0.0"
+
 repositories {
     mavenCentral()
 }
@@ -22,6 +24,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -29,13 +32,11 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-ui:1.6.4")
     implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation("javax.xml.bind:jaxb-api:2.3.1")
-    implementation("org.hibernate.validator:hibernate-validator:7.0.1.Final")
     implementation("io.github.microutils:kotlin-logging:2.1.21")
 
     // GraphQL
-    implementation("com.graphql-java:graphql-java-spring-boot-starter-webmvc:2.0")
-    implementation("com.graphql-java:graphql-java:17.3")
-    implementation("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+    implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:$graphQLVersion")
+    testImplementation("com.graphql-java-kickstart:graphql-spring-boot-starter-test:$graphQLVersion")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")

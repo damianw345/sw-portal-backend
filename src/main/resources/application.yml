@@ -52,3 +52,16 @@ app-config:
     expirationTimeMs: ${TOKEN_EXPIRATION_TIME_MS}
   authorizedRedirectUris:
     - ${FRONTEND_AUTHORIZED_REDIRECT_URI}
+
+graphql:
+  servlet:
+    max-query-depth: 50
+  playground:
+    enabled: true
+    static-path:
+      base: /api/vendor/playground
+    endpoint: /api/graphql
+  voyager:
+    enabled: true
+    base-path: /api/
+    endpoint: /api/graphql

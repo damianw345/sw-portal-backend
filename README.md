@@ -22,3 +22,9 @@ at `k8s` dir
 # REST endpoints documentation:
 
 `http://localhost:8080/api/swagger-ui/index.html`
+
+# GraphQL utilities endpoints
+
+`http://localhost:8080/api/playground`
+
+`http://localhost:8080/api/voyager`

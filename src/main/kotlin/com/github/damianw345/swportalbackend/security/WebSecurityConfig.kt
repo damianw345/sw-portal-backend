@@ -85,6 +85,8 @@ class WebSecurityConfig(
 
             "/graphql",
             "/graphiql",
+            "/playground/**",
+            "/voyager/**",
             "/vendor/**"
         )
     }
