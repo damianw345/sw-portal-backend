@@ -9,7 +9,11 @@ interface SwapiResourceRepository {
 
     fun <T : BaseSwapiResource> findAll(resourceType: ResourceType): List<T>
 
-    fun <T : BaseSwapiResource> getResourceByTypeAndIds(ids: List<Int>, resourceType: ResourceType): List<T>
+    fun <T : BaseSwapiResource> getPagedResourceByTypeAndIds(
+        resourceType: ResourceType,
+        ids: List<Int>,
+        pageable: Pageable
+    ): Page<T>
 
     fun <T : BaseSwapiResource> getPagedResources(pageable: Pageable, resourceType: ResourceType): Page<T>
 }

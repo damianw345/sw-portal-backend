@@ -11,11 +11,18 @@ import org.springframework.stereotype.Service
 @Service
 class SwapiResourceServiceImpl(private val swapiResourceRepository: SwapiResourceRepository) : SwapiResourceService {
 
-    override fun <T : BaseSwapiResource> getSwapiResourceByTypeAndIds(ids: List<Int>, resourceType: ResourceType): List<T> {
-        return swapiResourceRepository.getResourceByTypeAndIds(ids, resourceType)
+    override fun <T : BaseSwapiResource> getSwapiPagedResources(
+        resourceType: ResourceType,
+        ids: List<Int>,
+        pageable: Pageable
+    ): Page<T> {
+        return swapiResourceRepository.getPagedResourceByTypeAndIds(resourceType, ids, pageable)
     }
 
-    override fun <T : BaseSwapiResource> getSwapiPagedResources(pageable: Pageable, resourceType: ResourceType): Page<T> {
+    override fun <T : BaseSwapiResource> getSwapiPagedResources(
+        pageable: Pageable,
+        resourceType: ResourceType
+    ): Page<T> {
         return swapiResourceRepository.getPagedResources(pageable, resourceType)
     }
 }

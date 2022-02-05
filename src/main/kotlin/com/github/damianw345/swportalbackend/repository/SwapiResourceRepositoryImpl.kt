@@ -22,19 +22,32 @@ class SwapiResourceRepositoryImpl constructor(val mongoTemplate: MongoTemplate, 
         )
     }
 
-    override fun <T : BaseSwapiResource> getResourceByTypeAndIds(ids: List<Int>, resourceType: ResourceType): List<T> {
-        return mongoTemplate.find(
-            Query.query(Criteria.where("_id").`in`(ids)),
-            resourceType.clazz as Class<T>,
-            resourceType.name
-        )
+    override fun <T : BaseSwapiResource> getPagedResourceByTypeAndIds(
+        resourceType: ResourceType,
+        ids: List<Int>,
+        pageable: Pageable
+    ): Page<T> {
+        val query = Query().with(pageable)
+        query.addCriteria(Criteria.where("_id").`in`(ids))
+        return getPagedResourcesBy<T>(query, resourceType, pageable)
     }
 
-    override fun <T : BaseSwapiResource> getPagedResources(pageable: Pageable, resourceType: ResourceType): Page<T> {
+    override fun <T : BaseSwapiResource> getPagedResources(
+        pageable: Pageable,
+        resourceType: ResourceType
+    ): Page<T> {
         val query = Query().with(pageable)
+        return getPagedResourcesBy<T>(query, resourceType, pageable)
+    }
+
+    private fun <T : BaseSwapiResource> getPagedResourcesBy(
+        query: Query,
+        resourceType: ResourceType,
+        pageable: Pageable
+    ): PageImpl<T> {
         val list = mongoOperations
             .find(query, resourceType.clazz as Class<T>, resourceType.name)
         val count = mongoOperations.count(Query(), resourceType.clazz, resourceType.name)
-        return PageImpl<T>(list, pageable, count)
+        return PageImpl(list, pageable, count)
     }
 }

@@ -17,15 +17,18 @@ import org.springframework.web.bind.annotation.RestController
 class SwapiResourceController<T : BaseSwapiResource> constructor(private val swapiResourceService: SwapiResourceService) {
 
     @GetMapping("/{resourceType}/{ids}")
-    fun getResource(@PathVariable("resourceType") resourceType: String,
-                    @PathVariable("ids") ids: List<Int>): List<T> {
-        return swapiResourceService.getSwapiResourceByTypeAndIds(ids, ResourceType.valueOf(resourceType))
+    fun getResourceByIdsPage(
+        @PathVariable("resourceType") resourceType: String,
+        @PathVariable("ids") ids: List<Int>,
+        @PageableDefault(size = 10, page = 0) pageable: Pageable
+    ): Page<T> {
+        return swapiResourceService.getSwapiPagedResources(ResourceType.valueOf(resourceType), ids, pageable)
     }
 
     @GetMapping("/{resourceType}")
     fun getResourcePage(
-            @PathVariable("resourceType") resourceType: String,
-            @PageableDefault(size = 10, page = 0) pageable: Pageable
+        @PathVariable("resourceType") resourceType: String,
+        @PageableDefault(size = 10, page = 0) pageable: Pageable
     ): Page<T> {
         return swapiResourceService.getSwapiPagedResources(pageable, ResourceType.valueOf(resourceType.lowercase()))
     }
